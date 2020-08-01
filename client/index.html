@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to IFM</title>
+    <script defer type="text/javascript" src="./index.js"></script>
+</head>
+
+<body>
+    <h1>IFM Technician Applicants</h1>
+    <table>
+        <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Contact</th>
+        </tr>
+        <tr>
+            <td>Doe</td>
+            <td>John</td>
+            <td>333-434-0101</td>
+        </tr>
+
+    </table>
+
+    <br />
+
+    <form action="/apply" method="POST">
+        Last Name:
+        <input type="text" name="lname">
+        <br/>
+        First Name:
+        <input type="text" name="fname">
+        <br/>
+        Contact:
+        <input type="text" name="contact" placeholder="XXX-XXX-XXXX">
+
+        <input type="submit" name="apply" value="Apply">
+    </form>
+</body>
+
+</html>
