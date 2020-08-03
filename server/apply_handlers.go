@@ -50,10 +50,10 @@ func CreateNewApplicantHandler(w http.ResponseWriter, r *http.Request) {
 	applicants = append(applicants, newApplicant)
 
 	// Redirecting the user to the index.html page.
-	http.Redirect(w, r, "/client/", http.StatusFound)
+	http.Redirect(w, r, "/", http.StatusFound)
 }
 
-// GET Home Page handler
-func HomePageHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to IFM")
-}
+// // GET Home Page handler
+// func HomePageHandler(w http.ResponseWriter, r *http.Request) {
+// 	fmt.Fprintf(w, "Welcome to IFM")
+// }

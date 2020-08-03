@@ -1,0 +1,7 @@
+runtime: go111
+service: customer-app-server
+
+# Configure AppEngine to serve any static assets.
+handlers:
+  - url: /.*
+    static_dir: client

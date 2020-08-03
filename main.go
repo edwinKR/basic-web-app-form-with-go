@@ -8,15 +8,16 @@ import (
 	"./server"
 )
 
-
 // Creating all routes
 func newRouter() *mux.Router {
 	r := mux.NewRouter()
-	r.HandleFunc("/", server.HomePageHandler).Methods("GET")
 
 	staticAssetsDirectory := http.Dir("./client/")
-	staticFileHandler := http.StripPrefix("/client/", http.FileServer(staticAssetsDirectory))
-	r.PathPrefix("/client/").Handler(staticFileHandler).Methods("GET")
+	staticFileHandler := http.FileServer(staticAssetsDirectory)
+	// staticFileHandler := http.StripPrefix("/client/", http.FileServer(staticAssetsDirectory))
+	// r.PathPrefix("/client/").Handler(staticFileHandler).Methods("GET")
+
+	r.Handle("/", staticFileHandler).Methods("GET")
 
 	r.HandleFunc("/status", server.GetApplicantsHandler).Methods("GET")
 	r.HandleFunc("/apply", server.CreateNewApplicantHandler).Methods("POST")
@@ -24,11 +25,12 @@ func newRouter() *mux.Router {
 	return r
 }
 
+// main() function - This is the entry point of my executable program. This is where it starts the application.
 func main() {
 	fmt.Println("==== Server Running ====")
 
-	r := newRouter()
+	router := newRouter()
 	fmt.Println("Serving on port 8080...")
 
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
