@@ -4,39 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome to IFM</title>
-    <script defer type="text/javascript" src="./index.js"></script>
+    <script defer type="text/javascript" src="/index.js"></script>
 </head>
 
 <body>
     <h1>IFM Technician Applicants</h1>
     <table>
         <tr>
+            <th>ID</th>
             <th>Last Name</th>
             <th>First Name</th>
             <th>Contact</th>
+            <th></th>
+            <th></th>
         </tr>
-        <tr>
-            <td>Doe</td>
-            <td>John</td>
-            <td>333-434-0101</td>
-        </tr>
-
     </table>
 
     <br />
 
-    <form action="/apply" method="POST">
-        Last Name:
-        <input type="text" name="lname">
-        <br/>
-        First Name:
-        <input type="text" name="fname">
-        <br/>
-        Contact:
-        <input type="text" name="contact" placeholder="XXX-XXX-XXXX">
+    <div id="form-post">
+        <h2>Add new candidate: </h2>
+        <form action="/apply" method="POST">
+            Last Name:
+            <input type="text" name="lname">
+            <br/>
+            First Name:
+            <input type="text" name="fname">
+            <br/>
+            Contact:
+            <input type="text" name="contact" placeholder="XXX-XXX-XXXX">
 
-        <input type="submit" name="apply" value="Apply">
-    </form>
+            <input type="submit" name="apply" value="Apply">
+        </form>
+    </div>
+
+    <div id="form-edit">
+        <h2>Edit candidate info: </h2>
+        <form action="/edit" method="POST">
+            <label>Applicant ID:</label>
+            <input type="text" name="customerId">
+            <br />
+            <label>Last Name:</label>
+            <input type="text" name="lname">
+            <br/>
+            <label>First Name:</label>
+            <input type="text" name="fname">
+            <br/>
+            <label>Contact:</label>
+            <input type="text" name="contact" placeholder="XXX-XXX-XXXX">
+
+            <input type="submit" name="edit" value="Edit">
+        </form>
+    </div>
+
+
 </body>
 
 </html>
