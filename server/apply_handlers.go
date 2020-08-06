@@ -42,28 +42,8 @@ func GetApplicantsHandler(w http.ResponseWriter, r *http.Request) {
 
 	//defer db.Close()
 
-	//Testing================Start=============================
-	//fmt.Println("###########TESTING STARTS~~~~~~~~")
-	////Data to be used in query
-	//var (
-	//	customer_id string
-	//	lname string
-	//	fname string
-	//	contact string
-	//)
-	//
-	//for rows.Next() {
-	//	err = rows.Scan(&customer_id, &lname, &fname, &contact)
-	//	if err != nil {
-	//		fmt.Println("Uh oh....", err)
-	//	}
-	//	fmt.Println("***Retreived data**** \n", customer_id, lname, fname, contact)
-	//}
-	//fmt.Println("Testing done~~~~~~~~")
-	//Testing===========END==================================
-
-
 	defer rows.Close()
+
 	var applicants []Applicant
 
 	//query
@@ -83,9 +63,9 @@ func GetApplicantsHandler(w http.ResponseWriter, r *http.Request) {
 	err = rows.Err()
 	if err != nil {
 		fmt.Println("rows Error...", err)
+		return
 	}
-	fmt.Println("Done!!")
-
+	fmt.Println("Row query complete!")
 
 	applicantsBytes, err := json.Marshal(applicants)
 	if err != nil {
@@ -147,6 +127,7 @@ func UpdateApplicantHandler(w http.ResponseWriter, r *http.Request) {
 	selectedApplicant.FName = r.Form.Get("fname")
 	selectedApplicant.Contact = r.Form.Get("contact")
 	fmt.Printf("%#v $$$$$$$$$>>> ", selectedApplicant)
+
 	stmt, err := db.Prepare(`UPDATE candidate SET lname=?, fname=?, contact=? WHERE customer_id=?`)
 	if err != nil {
 		fmt.Println("Update STMT error...", err)

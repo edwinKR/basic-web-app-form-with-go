@@ -2,7 +2,6 @@ package main
 
 import (
 	"basic-web-app-form-with-go/server"
-	//"database/sql"
 	"fmt"
 	"github.com/gorilla/mux"
 	"log"
@@ -17,11 +16,12 @@ func newRouter() *mux.Router {
 	r.HandleFunc("/status", server.GetApplicantsHandler).Methods("GET")
 	r.HandleFunc("/edit", server.UpdateApplicantHandler).Methods("POST")
 	r.HandleFunc("/delete", server.DeleteApplicantHandler).Methods("DELETE")
+
 	staticAssetsDirectory := http.Dir("./client")
 	//staticFileHandler := http.FileServer(staticAssetsDirectory)
 	staticFileHandler := http.StripPrefix("", http.FileServer(staticAssetsDirectory))
-	r.PathPrefix("/").Handler(staticFileHandler).Methods("GET")
 
+	r.PathPrefix("/").Handler(staticFileHandler).Methods("GET")
 	//r.Handle("/", staticFileHandler).Methods("GET")
 
 	return r
@@ -30,12 +30,6 @@ func newRouter() *mux.Router {
 // main() function - This is the entry point of my executable program. This is where it starts the application.
 func main() {
 	fmt.Println("---------DB Server running???--------")
-	//MyDB, Err := server.MySQLConnect()
-	//if Err != nil {
-	//	fmt.Println(Err)
-	//}
-	//fmt.Println("DB>>>>", MyDB)
-
 	server.InitDB()
 
 	router := newRouter()
